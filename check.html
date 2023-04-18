@@ -3,6 +3,10 @@
 <head>
   <title>Check CSV File Content</title>
   <script>
+  <audio id="myAudio">
+  <source src="https://raw.githubusercontent.com/xguyor/html_for_work/main/file.mp3" type="audio/mpeg">
+  // Your browser does not support the audio element.
+  </audio>
   var startTime = Date.now(); // record start time
   function checkInput() {
     var userInput;
@@ -27,6 +31,10 @@
           if (userInput === fileContent) {
             var elapsedTime = Date.now() - startTime;
             alert("THE TIME THAT PASSED FROM THE INITIAL TRY IS: " + elapsedTime/1000 + " SECS");
+            // Play the audio file
+            var audio = document.getElementById("myAudio");
+            audio.play();
+            
           } else {
             alert("PLESE ENTER THE FILE CONTENT!");
           }
