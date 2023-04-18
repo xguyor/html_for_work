@@ -46,7 +46,8 @@
               var audio = document.getElementById("myAudio");
               audio.play();
 
-
+              //remove buttons
+              document.getElementById("myForm").remove();
 
              // When the audio has finished playing, show the button and image
             audio.addEventListener('ended', function() {
@@ -61,7 +62,7 @@
            // Remove all elements
               button.parentNode.removeChild(button);
               audio.parentNode.removeChild(audio);
-              document.getElementById("myForm").remove();
+              
               });
               document.body.appendChild(button);
             });
@@ -69,7 +70,7 @@
 
 
             } else {
-              alert("PLESE ENTER THE FILE CONTENT!");
+              alert("PLEASE ENTER THE FILE CONTENT!");
             }
           } else if (xhr.readyState === 4) {
             alert("Unable to retrieve CSV file content.");
