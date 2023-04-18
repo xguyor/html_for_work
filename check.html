@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check CSV File Content</title>
+  <script>
+  function checkInput() {
+    var userInput;
+    var fileContent;
+
+    while (true) {
+      // Prompt the user for input
+      userInput = document.getElementById("userInput").value.trim();
+      if (userInput === "") {
+        alert("Please enter input.");
+        continue;
+      }
+
+      // Retrieve the content of the CSV file using AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Get the content of the CSV file
+          fileContent = xhr.responseText.trim();
+
+          // Check if the user's input matches the CSV file content
+          if (userInput === fileContent) {
+            alert("Input matches CSV file content!");
+          } else {
+            alert("Input does not match CSV file content.");
+          }
+        } else if (xhr.readyState === 4) {
+          alert("Unable to retrieve CSV file content.");
+        }
+      };
+      xhr.open("GET", "https://raw.githubusercontent.com/xguyor/html_for_work/public/data.csv", true);
+      xhr.send();
+
+      break; // Exit the loop after the AJAX request is sent
+    }
+  }
+  </script>
+</head>
+<body>
+  <h1>Check CSV File Content</h1>
+  <form id="myForm" action="#" method="post">
+    <label for="userInput">Enter Text to Search for:</label>
+    <input type="text" id="userInput" name="userInput"><br><br>
+    <input type="button" value="Submit" onclick="checkInput()">
+  </form>
+</body>
+</html>
