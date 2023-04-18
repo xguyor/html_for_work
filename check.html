@@ -1,61 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Check CSV File Content</title>
-  <script>
-  <audio id="myAudio">
-  <source src="https://raw.githubusercontent.com/xguyor/html_for_work/main/file.mp3" type="audio/mpeg">
-  // Your browser does not support the audio element.
-  </audio>
-  var startTime = Date.now(); // record start time
-  function checkInput() {
-    var userInput;
-    var fileContent;
-
-    while (true) {
-      // Prompt the user for input
-      userInput = document.getElementById("userInput").value.trim();
-      if (userInput === "") {
-        alert("Please enter input.");
-        continue;
-      }
-
-      // Retrieve the content of the CSV file using AJAX
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          // Get the content of the CSV file
-          fileContent = xhr.responseText.trim();
-
-          // Check if the user's input matches the CSV file content
-          if (userInput === fileContent) {
-            var elapsedTime = Date.now() - startTime;
-            alert("THE TIME THAT PASSED FROM THE INITIAL TRY IS: " + elapsedTime/1000 + " SECS");
-            // Play the audio file
-            var audio = document.getElementById("myAudio");
-            audio.play();
-            
-          } else {
-            alert("PLESE ENTER THE FILE CONTENT!");
-          }
-        } else if (xhr.readyState === 4) {
-          alert("Unable to retrieve CSV file content.");
-        }
-      };
-      xhr.open("GET", "https://raw.githubusercontent.com/xguyor/html_for_work/main/data.csv", true);
-      xhr.send();
-
-      break; // Exit the loop after the AJAX request is sent
-    }
-  }
-  </script>
+  <title>Check CSV File Content for Technion Lab Assignment</title>
 </head>
 <body>
-  <h1>Check CSV File Content</h1>
+  <audio id="myAudio">
+    <source src="https://raw.githubusercontent.com/xguyor/html_for_work/main/file.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <h1>Check CSV File Content for Technion Lab Assignment</h1>
   <form id="myForm" action="#" method="post">
-    <label for="userInput">Enter Text to Search for:</label>
+    <label for="userInput">Input to search in CSV file:</label>
     <input type="text" id="userInput" name="userInput"><br><br>
     <input type="button" value="Submit" onclick="checkInput()">
   </form>
+
+  <script>
+    var startTime = Date.now(); // record start time
+    function checkInput() {
+      var userInput;
+      var fileContent;
+
+      while (true) {
+        // Prompt the user for input
+        userInput = document.getElementById("userInput").value.trim();
+        if (userInput === "") {
+          alert("Please enter input.");
+          continue;
+        }
+
+        // Retrieve the content of the CSV file using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Get the content of the CSV file
+            fileContent = xhr.responseText.trim();
+
+            // Check if the user's input matches the CSV file content
+            if (userInput === fileContent) {
+              var elapsedTime = Date.now() - startTime;
+              alert("THE TIME THAT PASSED FROM THE INITIAL TRY IS: " + elapsedTime/1000 + " SECS");
+
+              // Play the audio file
+              var audio = document.getElementById("myAudio");
+              audio.play();
+
+
+
+             // When the audio has finished playing, show the button and image
+            audio.addEventListener('ended', function() {
+              var button = document.createElement('button');
+              button.innerText = 'I heard';
+              button.addEventListener('click', function() {
+                var img = document.createElement('img');
+                img.src = 'https://raw.githubusercontent.com/xguyor/html_for_work/main/image.jpg';
+                document.body.appendChild(img);
+
+
+           // Remove all elements
+              button.parentNode.removeChild(button);
+              audio.parentNode.removeChild(audio);
+              document.getElementById("myForm").remove();
+              });
+              document.body.appendChild(button);
+            });
+
+
+
+            } else {
+              alert("PLESE ENTER THE FILE CONTENT!");
+            }
+          } else if (xhr.readyState === 4) {
+            alert("Unable to retrieve CSV file content.");
+          }
+        };
+        xhr.open("GET", "https://raw.githubusercontent.com/xguyor/html_for_work/main/data.csv", true);
+        xhr.send();
+
+        break; // Exit the loop after the AJAX request is sent
+      }
+    }
+  </script>
 </body>
 </html>
