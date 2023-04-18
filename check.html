@@ -17,13 +17,13 @@
   </form>
 
   <script>
-    var startTime = Date.now(); // record start time
+    var startTime = Date.now(); // save start time
     function checkInput() {
       var userInput;
       var fileContent;
 
       while (true) {
-        // Prompt the user for input
+        // alert the user for input
         userInput = document.getElementById("userInput").value.trim();
         if (userInput === "") {
           alert("Please enter input.");
@@ -33,11 +33,11 @@
         // Retrieve the content of the CSV file using AJAX
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
+          if (xhr.readyState === 4 && xhr.status === 200) { 
             // Get the content of the CSV file
             fileContent = xhr.responseText.trim();
 
-            // Check if the user's input matches the CSV file content
+            // Check iff the users input match the CSV file content
             if (userInput === fileContent) {
               var elapsedTime = Date.now() - startTime;
               alert("THE TIME THAT PASSED FROM THE INITIAL TRY IS: " + elapsedTime/1000 + " SECS");
@@ -46,7 +46,7 @@
               var audio = document.getElementById("myAudio");
               audio.play();
 
-              //remove buttons
+              //remoove buttons
               document.getElementById("myForm").remove();
 
              // When the audio has finished playing, show the button and image
@@ -59,7 +59,7 @@
                 document.body.appendChild(img);
 
 
-           // Remove all elements
+           // Remove   elements
               button.parentNode.removeChild(button);
               audio.parentNode.removeChild(audio);
               
