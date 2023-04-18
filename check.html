@@ -25,11 +25,6 @@
       while (true) {
         // alert the user for input
         userInput = document.getElementById("userInput").value.trim();
-        if (userInput === "") {
-          alert("Please enter input.");
-          continue;
-        }
-
         // Retrieve the content of the CSV file using AJAX
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
