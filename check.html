@@ -3,6 +3,7 @@
 <head>
   <title>Check CSV File Content</title>
   <script>
+  var startTime = Date.now(); // record start time
   function checkInput() {
     var userInput;
     var fileContent;
@@ -24,7 +25,8 @@
 
           // Check if the user's input matches the CSV file content
           if (userInput === fileContent) {
-            alert("THE TIME THAT PASSED FROM THE INITIAL TRY IS: ");
+            var elapsedTime = Date.now() - startTime;
+            alert("THE TIME THAT PASSED FROM THE INITIAL TRY IS: " + elapsedTime*1000 + " SECS");
           } else {
             alert("PLESE ENTER THE FILE CONTENT!");
           }
