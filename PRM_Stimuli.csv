@@ -1,0 +1,16 @@
+﻿Pair_id,Cue,Cue2,Answer,Type,Shuffle,Detail Level,Formula sign,Scale points
+1,Images/D10.JPG,Images/D1.JPG,LEFT,Instructions,#no,per item,,
+13,Images/F1.JPG,Images/F10.JPG,RIGHT,Instructions,#no,per item,,
+16,Images/D1.F13.JPG,Images/D10.D25.JPG,EQUAL,Instructions,#no,per item,,
+1104,Images/F13.JPG,Images/F6.JPG,LEFT,verification,#no,per item,,
+11001,Images/F6.JPG,Images/F1.JPG,EQUAL,basic,basic,per item,,
+11003,Images/D21.JPG,Images/D1.JPG,LEFT,basic,basic,per item,,
+11004,Images/D25.JPG,Images/F1.JPG,LEFT,basic,basic,per item,,
+11005,Images/D14.JPG,Images/D25.JPG,EQUAL,basic,basic,per item,,
+11007,Images/F10.JPG,Images/F13.JPG,EQUAL,basic,basic,per item,,
+950,How successful do you think you were in accomplishing the task goals?|not at all|very much so,,,NASA-TLX ,#no,both,+,7
+903,"<p>In this survey, you compared perimeters of shapes. Please describe three strategies you personally used and also estimate for how many sets you used each one of them. </p><p><b>Please note:</b> Every respondent approaches this task differently and various approaches can be effective. We are interested in your particular approach to this task.   </p>",,,Final qs,#no,per participant,,
+904,"<p>Three potential strategies to address the task are:</p><p>* <b>Count</b> - Counting the units along the perimeters</p><p>* <b>Recall</b> - Recalling the perimeter length from previous shapes</p><p>* <b>Assess</b> - A Rough estimation which shape has a longer perimeter</p><p>We acknowledge that it is possible that you used more than one strategy, or others. For each strategy among these, please enter the number of sets out of 30 you estimate using it. </p><p>For example: <b>Count - 17; Recall - 2; Assess - 11</b></p>",,,Final qs,#no,per participant,,
+951,"How much mental activity was required (e.g., thinking, deciding, calculating, remembering, looking, searching, etc.)?|little|a lot",,,NASA-TLX ,Likert,both,+,7
+952,To what extent was the task complex?|not at all|very much so,,,NASA-TLX ,Likert,both,-,7
+999,Physical activity promotes my thinking skills. Please ignore this statement and answer by level two |Strongly Disagree|Strongly agree,,2,verification,#no,per participant,,
