@@ -22,7 +22,6 @@
         unset($str);
         return $explode;
     }
-
     #### Set up MC button grid ####
     // shuffle button positions (first time only) and save to session
     if(isset($_SESSION['MCbutton']) == false) {
@@ -293,68 +292,52 @@ $(".TestMC").click(function() {
     <button class="collectorButton collectorAdvance" id="FormSubmitButton">Submit</button>
 </div>
 </div>
+<?php
+///Guy's Code
+// new code - get the correct answer from stimuli
+	$correct_answer = $_SESSION['Stimuli'][ $item ][ $stimCols['answer']];
+	$_condition = $_SESSION['Condition']['Condition Description'];
+	$i = 2;
+	$feedback = $_SESSION['Procedure'][$i]['feedback']; 
+  ?>
 <script>
- // Guy's Code
-const submitButton = document.querySelector('#FormSubmitButton');
-submitButton.addEventListener('click', myFunction);
+	const submitButton = document.querySelector('#FormSubmitButton');
+	submitButton.addEventListener('click', myFunction);
+	function myFunction(event) {
+		event.preventDefault(); // hold the page from proceeding until alert shown
+		const condition = "<?= $_condition ?>";
+		//check for me
+		//alert("condition is: " + condition);
+		//check if feedback is yes or no
+		if(condition == "with_feedback"){ 
+			const feedback = "<?= $feedback ?>";
+				//check for me
+				//alert("feedback is: " + feedback);
+			if(feedback == "yes"){
+					//feedback
+					var correct_answer = "<?= $correct_answer ?>";
+						//check for me
+						//alert("correct_answer is: " + correct_answer);
+					const user_input = $("#Response").val().trim();
+					if (user_input === correct_answer) {
+					  // correct
+					  alert("Correct Answer");
+					} else {
+					  // wrong
+					  alert("Wrong Answer");
+					}
 
-function myFunction(event) {
-  event.preventDefault(); // hold the page from proceeding until alert shown
-  const file1 = "https://raw.githubusercontent.com/xguyor/html_for_work/next/P_PRM2.csv";
-  const request1 = new XMLHttpRequest();
-
-  request1.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-      const data1 = this.responseText.split("\n").map(line => line.split(","));
-      const item = "<?= $item ?>";
-      console.log(item);
-      const line1 = item - 1; //item value 
-      const column1 = 9; //feedback column
-      const feedback = data1[Number(item)][column1];
-      if (feedback == "yes") {
-        //need to show feedback
-
-        const file2 = "https://raw.githubusercontent.com/xguyor/html_for_work/next/PRM_Stimuli.csv";
-        const request2 = new XMLHttpRequest();
-        request2.onreadystatechange = function() {
-          if (this.readyState === 4 && this.status === 200) {
-            const data2 = this.responseText.split("\n").map(line => line.split(","));
-            const line2 = line1; //item value 
-            const column2 = 3; //answers 
-
-            const correct_answer = data2[line2][column2];
-
-            const user_input = $("#Response").val().trim();
-
-            if (user_input === correct_answer) {
-              // correct
-              alert("Correct Answer");
-            } else {
-              // wrong
-              alert("Wrong Answer");
-            }
-
-             // allow form submission
-            submitButton.removeEventListener('click', myFunction);
-            submitButton.click();
-          }
-        };
-        request2.open("GET", file2, true);
-        request2.send();
-      } else {
-		  
-		  
-        // allow form submission
-        submitButton.removeEventListener('click', myFunction);
-        submitButton.click();
-      }
-    }
-  };
-  request1.open("GET", file1, true);
-  request1.send();
+					 // allow form submission
+					submitButton.removeEventListener('click', myFunction);
+					submitButton.click();
+			}
+			else{
+					submitButton.removeEventListener('click', myFunction);
+					submitButton.click();	
+			}				
+	}
 }
-
-//Guy's code
+//Guy's Code
 	
     $("input[name='Judgment']").on("input", function() {
         $("#rangeValue").html(this.value);
